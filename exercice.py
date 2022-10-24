@@ -4,23 +4,67 @@
 from collections import deque
 
 
-def get_fibonacci_number(TODO):
+def get_fibonacci_number(n):
+
+	return 0 if n == 0 else 1 if n == 1 else get_fibonacci_number(n-1) + get_fibonacci_number(n-2)
+
 	pass
 
-def get_fibonacci_sequence(TODO):
+def get_fibonacci_sequence(l):
+
+	return [0] if l == 1 else [0,1] if l == 2 else get_fibonacci_sequence(l-1) + [sum(get_fibonacci_sequence(l-1)[-2:])]
+
 	pass
 
-def get_sorted_dict_by_decimals(TODO):
+def get_sorted_dict_by_decimals(dic):
+
+	return dict(sorted(dic.items(), key = lambda x: x[1] % 1))
+
 	pass
 
 def fibonacci_numbers(length):
+
+	ls = [0,1]
+
+	for i in ls:
+
+		yield i
+
+	ls = deque(ls)
+
+	for i in range(2, length):
+
+		ls.append(ls[-1] + ls[-2])
+		ls.popleft()
+		yield ls[-1]
+
 	pass
 
-def build_recursive_sequence_generator(TODO):
+def build_recursive_sequence_generator(seq, f):
+
+	def fibonacci_numbers(length):
+
+		ls = seq
+
+		for i in ls:
+
+			yield i
+
+		ls = deque(ls)
+
+		for i in range(len(seq), length):
+
+			ls.append(ls[-1] + ls[-2])
+			ls.popleft()
+			yield ls[-1]
+
+	return fibonacci_numbers
+
 	pass
 
 
 if __name__ == "__main__":
+
 	print([get_fibonacci_number(0), get_fibonacci_number(1), get_fibonacci_number(2)])
 	print([get_fibonacci_number(i) for i in range(10)])
 	print()
